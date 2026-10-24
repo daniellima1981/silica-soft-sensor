@@ -31,6 +31,20 @@ dev = [
     "black>=26.10.1",
     "isort>=9.0.2",
     "mypy>=2.4.0",
+    "pandas-stubs>=3.0.5.260914",
     "pre-commit>=4.7.0",
     "pytest>=9.1.1",
 ]
+
+[tool.isort]
+profile = "black"
+src_paths = ["src", "tests"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+
