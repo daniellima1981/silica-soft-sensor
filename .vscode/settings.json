@@ -1,0 +1,14 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "black-formatter.importStrategy": "fromEnvironment",
+  "files.eol": "\n",
+  "isort.importStrategy": "fromEnvironment",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true
+}
