@@ -1,0 +1,28 @@
+bundle:
+  name: silica-soft-sensor
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    description: Unity Catalog catalog for the target environment (one catalog per environment).
+  schema:
+    description: Schema that holds this project's tables, volumes and models.
+    default: silica_soft_sensor
+
+# The workspace host is intentionally not set here (public repo).
+# Locally it comes from the CLI profile (-p silica); in CI from DATABRICKS_HOST.
+targets:
+  dev:
+    mode: development
+    default: true
+    variables:
+      catalog: portfolio_dev
+
+  prd:
+    mode: production
+    variables:
+      catalog: portfolio_prd
+    workspace:
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
