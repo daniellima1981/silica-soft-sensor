@@ -1,4 +1,14 @@
+# Configurações globais
+default_install_hook_types:
+  - pre-commit
+  - commit-msg
+
 repos:
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v4.4.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
   # Generic checks: do not depend on the project environment
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
