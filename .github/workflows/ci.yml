@@ -28,3 +28,22 @@ jobs:
 
       - name: Run tests
         run: uv run pytest
+
+  bundle:
+    needs: quality
+    runs-on: ubuntu-latest
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+
+      - name: Set up Databricks CLI
+        uses: databricks/setup-cli@v1.22.1
+
+      - name: Validate bundle (dev)
+        run: databricks bundle validate -t dev
+
+      - name: Validate bundle (prd)
+        run: databricks bundle validate -t prd
