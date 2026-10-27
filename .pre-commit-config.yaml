@@ -1,7 +1,10 @@
-# Configurações globais
+# Global settings
 default_install_hook_types:
   - pre-commit
   - commit-msg
+
+default_stages:
+  - pre-commit
 
 repos:
   - repo: https://github.com/compilerla/conventional-pre-commit
