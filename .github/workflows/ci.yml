@@ -47,3 +47,23 @@ jobs:
 
       - name: Validate bundle (prd)
         run: databricks bundle validate -t prd
+
+  deploy:
+    needs: bundle
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-prd
+      cancel-in-progress: false
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+
+      - name: Set up Databricks CLI
+        uses: databricks/setup-cli@v1.22.1
+
+      - name: Deploy bundle to prd
+        run: databricks bundle deploy -t prd
