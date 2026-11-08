@@ -25,8 +25,8 @@ repeated across the hour's rows) have different grains and different origins.
 1. **Two tables, one per grain.**
    - `silver_process`: one row per bronze row. Typed process and feed inputs,
      row-level quality flags.
-   - `silver_lab_hourly`: one row per hour. `iron_concentrate_pct`,
-     `silica_concentrate_pct`, lab quality flags and `is_valid_label`
+   - `silver_lab_hourly`: one row per hour. `pct_iron_concentrate`,
+     `pct_silica_concentrate`, lab quality flags and `is_valid_label`
      (the 3,426 valid labels defined in ADR 0001).
    The gold layer joins them on the hour.
 
