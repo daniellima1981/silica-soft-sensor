@@ -30,6 +30,7 @@ target-version = ["py312"]
 [dependency-groups]
 dev = [
     "black>=26.10.1",
+    "databricks-connect==17.3.*",
     "ipykernel>=7.4.0",
     "isort>=9.0.2",
     "matplotlib>=3.11.2",
@@ -49,4 +50,5 @@ strict = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-ra --strict-markers"
+addopts = "-ra --strict-markers -m \"not spark\""
+markers = ["spark: needs a Spark session (Databricks Connect on serverless)"]
