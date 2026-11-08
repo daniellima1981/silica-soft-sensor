@@ -1,6 +1,6 @@
 """Bronze layer: the flotation CSV stored as Delta with values untouched."""
 
-from datetime import datetime
+from datetime import UTC, datetime
 
 from pyspark.sql import DataFrame, SparkSession, Window
 from pyspark.sql import functions as F
@@ -77,6 +77,6 @@ def run(
 ) -> None:
     """Read, number, normalize, validate and write the bronze table."""
     raw = add_row_id(read_source_csv(spark, source_path))
-    bronze = to_bronze(raw, ingested_at=datetime.now())
+    bronze = to_bronze(raw, ingested_at=datetime.now(UTC))
     validate_bronze(bronze, expected_rows)
     write_bronze(bronze, table)
